@@ -70,16 +70,16 @@ graph.add_node("checkWhichSolution",checkWhichSolution)
 
 graph.add_edge(START, "equation_to_string")
 graph.add_edge("equation_to_string", "findDiscriminant")
-graph.add_conditional_edges("findDiscriminant","checkWhichSolution")
+graph.add_conditional_edges("findDiscriminant",checkWhichSolution)
 
 graph.add_edge("checkWhichSolution","find_two_real_roots")
 graph.add_edge("checkWhichSolution","find_single_real_root")
 graph.add_edge("checkWhichSolution","find_no_real_roots")
-graph.add_edge("find_two_real_roots","END")
+graph.add_edge("find_two_real_roots",END)
 workflow = graph.compile()
 
-intialState = {"a": 1, "b": 2, "c": 3}
+intialState = {"a": 1, "b": 2, "c": 0}
 
 finalState = workflow.invoke(intialState)
-
 print(finalState)
+
